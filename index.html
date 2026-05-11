@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,7 +22,9 @@
 }
 
 body{
+
   min-height:100vh;
+
   display:flex;
   justify-content:center;
   align-items:center;
@@ -49,7 +53,6 @@ body{
 
   box-shadow:
     0 0 60px rgba(0,140,255,0.15);
-
 }
 
 .logo{
@@ -64,21 +67,30 @@ body{
 }
 
 .logo h1{
+
   font-size:110px;
+
   line-height:1;
+
   font-weight:900;
 
-  background:linear-gradient(180deg,#35e8ff,#1583ff);
+  background:
+    linear-gradient(180deg,#35e8ff,#1583ff);
 
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
 .subtitle{
+
   text-align:center;
+
   color:#cbd5e1;
+
   font-size:30px;
+
   margin-top:20px;
+
   margin-bottom:40px;
 }
 
@@ -88,7 +100,8 @@ body{
 
 .install-btn{
 
-  background:linear-gradient(90deg,#1fe4ff,#1583ff);
+  background:
+    linear-gradient(90deg,#1fe4ff,#1583ff);
 
   border:none;
 
@@ -160,6 +173,17 @@ body{
   font-size:22px;
 }
 
+.blocked{
+
+  text-align:center;
+
+  font-size:42px;
+
+  color:#ff6666;
+
+  padding:80px 20px;
+}
+
 @media(max-width:800px){
 
   .card{
@@ -184,18 +208,71 @@ body{
   .instructions li{
     font-size:18px;
   }
+
 }
 
 </style>
+
 </head>
 
 <body>
 
+<script>
+
+/* ===========================
+   НАСТРОЙКИ ДОСТУПА
+=========================== */
+
+const enabled = true;
+
+const password = "1234";
+
+/* ===========================
+   ПРОВЕРКА ВКЛЮЧЕНИЯ
+=========================== */
+
+if(!enabled){
+
+  document.write(`
+
+    <div class="blocked">
+      ПРОШИВКА ВРЕМЕННО НЕДОСТУПНА
+    </div>
+
+  `);
+
+  throw new Error("Installer disabled");
+}
+
+/* ===========================
+   ПРОВЕРКА ПАРОЛЯ
+=========================== */
+
+const userPass = prompt("Введите пароль доступа");
+
+if(userPass !== password){
+
+  document.write(`
+
+    <div class="blocked">
+      ДОСТУП ЗАПРЕЩЕН
+    </div>
+
+  `);
+
+  throw new Error("Access denied");
+}
+
+</script>
+
 <div class="card">
 
   <div class="logo">
+
     <div class="wifi">📶</div>
+
     <h1>AIR</h1>
+
   </div>
 
   <div class="subtitle">
@@ -219,11 +296,17 @@ body{
     <h2>ИНСТРУКЦИЯ</h2>
 
     <ol>
+
       <li>Подключите AIR устройство через USB</li>
+
       <li>Нажмите кнопку «ПРОШИТЬ ESP32-S3»</li>
+
       <li>Выберите COM-порт</li>
+
       <li>Дождитесь окончания установки</li>
+
       <li>Устройство перезагрузится автоматически</li>
+
     </ol>
 
   </div>
