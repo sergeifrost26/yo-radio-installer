@@ -109,11 +109,11 @@ body{
 
   color:white;
 
-  font-size:28px;
+  font-size:32px;
 
   font-weight:bold;
 
-  padding:24px;
+  padding:28px;
 
   border-radius:24px;
 
@@ -123,8 +123,6 @@ body{
 
   box-shadow:
     0 10px 30px rgba(0,153,255,0.35);
-
-  margin-bottom:20px;
 }
 
 .install-btn:hover{
@@ -295,17 +293,13 @@ body{
 
 <script>
 
-/* ===========================
-   SETTINGS
-=========================== */
+/* SETTINGS */
 
 const enabled = true;
 
 const password = "1234";
 
-/* ===========================
-   ENABLE CHECK
-=========================== */
+/* ENABLE CHECK */
 
 if(!enabled){
 
@@ -388,10 +382,7 @@ if(!enabled){
 
   <div class="install-wrap">
 
-    <!-- FULL FLASH -->
-
     <esp-web-install-button
-      id="fullBtn"
       manifest="manifest_full.json">
 
       <button
@@ -399,38 +390,6 @@ if(!enabled){
         class="install-btn">
 
         ПОЛНАЯ ПРОШИВКА
-
-      </button>
-
-    </esp-web-install-button>
-
-    <!-- FIRMWARE -->
-
-    <esp-web-install-button
-      id="firmwareBtn"
-      manifest="manifest_firmware.json">
-
-      <button
-        slot="activate"
-        class="install-btn">
-
-        ОБНОВИТЬ FIRMWARE
-
-      </button>
-
-    </esp-web-install-button>
-
-    <!-- LITTLEFS -->
-
-    <esp-web-install-button
-      id="littlefsBtn"
-      manifest="manifest_littlefs.json">
-
-      <button
-        slot="activate"
-        class="install-btn">
-
-        ОБНОВИТЬ LITTLEFS
 
       </button>
 
@@ -448,7 +407,7 @@ if(!enabled){
 
       <li>Введите пароль</li>
 
-      <li>Выберите нужный режим прошивки</li>
+      <li>Нажмите «ПОЛНАЯ ПРОШИВКА»</li>
 
       <li>Выберите COM-порт</li>
 
@@ -466,9 +425,7 @@ if(!enabled){
 
 <script>
 
-/* ===========================
-   PASSWORD SYSTEM
-=========================== */
+/* PASSWORD SYSTEM */
 
 let attempts = 3;
 
@@ -523,9 +480,7 @@ function checkPassword(){
   }
 }
 
-/* ===========================
-   ENTER SUPPORT
-=========================== */
+/* ENTER SUPPORT */
 
 document
   .getElementById("passwordInput")
@@ -537,70 +492,7 @@ document
 
 });
 
-/* ===========================
-   RELOCK AFTER FLASH
-=========================== */
-
-function relockInstaller(){
-
-  document
-    .getElementById("passwordScreen")
-    .style.display = "flex";
-
-  document
-    .getElementById("passwordInput")
-    .value = "";
-}
-
-/* FULL FLASH */
-
-document
-  .getElementById("fullBtn")
-  .addEventListener("state-changed", (ev) => {
-
-    if(ev.detail.state === "finished"){
-
-      setTimeout(() => {
-
-        relockInstaller();
-
-      }, 1500);
-    }
-
-});
-
-/* FIRMWARE */
-
-document
-  .getElementById("firmwareBtn")
-  .addEventListener("state-changed", (ev) => {
-
-    if(ev.detail.state === "finished"){
-
-      setTimeout(() => {
-
-        relockInstaller();
-
-      }, 1500);
-    }
-
-});
-
-/* LITTLEFS */
-
-document
-  .getElementById("littlefsBtn")
-  .addEventListener("state-changed", (ev) => {
-
-    if(ev.detail.state === "finished"){
-
-      setTimeout(() => {
-
-        relockInstaller();
-
-      }, 1500);
-    }
-
-});
-
 </script>
+
+</body>
+</html>
