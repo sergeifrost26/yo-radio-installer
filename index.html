@@ -1,111 +1,235 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Ё Radio ESP32-S3 Installer</title>
+<title>AIR Installer</title>
 
-  <script
-    type="module"
-    src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module">
-  </script>
+<script
+  type="module"
+  src="https://unpkg.com/esp-web-tools@9/dist/web/install-button.js?module">
+</script>
 
-  <style>
-    body{
-      margin:0;
-      background:#0f172a;
-      color:white;
-      font-family:Arial,sans-serif;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      min-height:100vh;
-    }
+<style>
 
-    .card{
-      width:420px;
-      background:#1e293b;
-      border-radius:24px;
-      padding:40px;
-      text-align:center;
-      box-shadow:0 10px 40px rgba(0,0,0,0.4);
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    h1{
-      margin-top:0;
-      font-size:36px;
-    }
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
-    p{
-      color:#cbd5e1;
-      line-height:1.6;
-    }
+  font-family:Arial,sans-serif;
 
-    .steps{
-      text-align:left;
-      margin-top:30px;
-      background:#0f172a;
-      padding:20px;
-      border-radius:16px;
-    }
+  background:
+    radial-gradient(circle at center,#0d1b3d 0%,#020817 70%);
 
-    .steps li{
-      margin-bottom:10px;
-    }
+  color:white;
+}
 
-    button{
-      background:#22c55e;
-      border:none;
-      color:white;
-      font-size:20px;
-      padding:18px 32px;
-      border-radius:16px;
-      cursor:pointer;
-      margin-top:25px;
-      font-weight:bold;
-    }
+.card{
 
-    button:hover{
-      background:#16a34a;
-    }
+  width:700px;
 
-    .footer{
-      margin-top:30px;
-      color:#94a3b8;
-      font-size:14px;
-    }
-  </style>
+  background:rgba(15,23,42,0.88);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:36px;
+
+  padding:50px;
+
+  backdrop-filter:blur(10px);
+
+  box-shadow:
+    0 0 60px rgba(0,140,255,0.15);
+
+}
+
+.logo{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.logo .wifi{
+  font-size:60px;
+  color:#27d7ff;
+  margin-bottom:10px;
+}
+
+.logo h1{
+  font-size:110px;
+  line-height:1;
+  font-weight:900;
+
+  background:linear-gradient(180deg,#35e8ff,#1583ff);
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+  text-align:center;
+  color:#cbd5e1;
+  font-size:30px;
+  margin-top:20px;
+  margin-bottom:40px;
+}
+
+.install-wrap{
+  text-align:center;
+}
+
+.install-btn{
+
+  background:linear-gradient(90deg,#1fe4ff,#1583ff);
+
+  border:none;
+
+  color:white;
+
+  font-size:34px;
+
+  font-weight:bold;
+
+  padding:28px 60px;
+
+  border-radius:28px;
+
+  cursor:pointer;
+
+  transition:0.25s;
+
+  box-shadow:
+    0 10px 30px rgba(0,153,255,0.35);
+}
+
+.install-btn:hover{
+  transform:translateY(-3px) scale(1.02);
+}
+
+.instructions{
+
+  margin-top:45px;
+
+  background:rgba(0,0,0,0.22);
+
+  border-radius:24px;
+
+  padding:35px;
+}
+
+.instructions h2{
+
+  color:#29d6ff;
+
+  margin-bottom:25px;
+
+  font-size:34px;
+}
+
+.instructions ol{
+  padding-left:25px;
+}
+
+.instructions li{
+
+  margin-bottom:18px;
+
+  color:#e2e8f0;
+
+  font-size:26px;
+
+  line-height:1.5;
+}
+
+.footer{
+
+  text-align:center;
+
+  margin-top:35px;
+
+  color:#94a3b8;
+
+  font-size:22px;
+}
+
+@media(max-width:800px){
+
+  .card{
+    width:95%;
+    padding:25px;
+  }
+
+  .logo h1{
+    font-size:70px;
+  }
+
+  .subtitle{
+    font-size:20px;
+  }
+
+  .install-btn{
+    width:100%;
+    font-size:24px;
+    padding:22px;
+  }
+
+  .instructions li{
+    font-size:18px;
+  }
+}
+
+</style>
 </head>
 
 <body>
 
 <div class="card">
 
-  <h1>Ё Radio</h1>
+  <div class="logo">
+    <div class="wifi">📶</div>
+    <h1>AIR</h1>
+  </div>
 
-  <p>
+  <div class="subtitle">
     Онлайн-прошивка ESP32-S3 через браузер Chrome
-  </p>
+  </div>
 
-  <esp-web-install-button manifest="manifest.json">
-    <button slot="activate">
-      ПРОШИТЬ ESP32-S3
-    </button>
-  </esp-web-install-button>
+  <div class="install-wrap">
 
-  <div class="steps">
+    <esp-web-install-button manifest="manifest.json">
+
+      <button slot="activate" class="install-btn">
+        ПРОШИТЬ ESP32-S3
+      </button>
+
+    </esp-web-install-button>
+
+  </div>
+
+  <div class="instructions">
+
+    <h2>ИНСТРУКЦИЯ</h2>
+
     <ol>
-      <li>Подключите ESP32-S3 через USB</li>
-      <li>Откройте Google Chrome</li>
-      <li>Нажмите кнопку прошивки</li>
+      <li>Подключите AIR устройство через USB</li>
+      <li>Нажмите кнопку «ПРОШИТЬ ESP32-S3»</li>
       <li>Выберите COM-порт</li>
       <li>Дождитесь окончания установки</li>
+      <li>Устройство перезагрузится автоматически</li>
     </ol>
+
   </div>
 
   <div class="footer">
-    YO Radio Installer © 2026
+    AIR Installer • 2026
   </div>
 
 </div>
